@@ -28,7 +28,7 @@ jobs:
         run: |
           ls -al
           npm i
-          node .\transform.js
+          node transform.js
 
       - name: Create Release
         id: create_release
