@@ -26,7 +26,8 @@ jobs:
           node-version: 12.x
       - name: Build project
         run: |
-          npm i && npm run
+          npm i
+          node .\transform.js
 
       - name: Create Release
         id: create_release
