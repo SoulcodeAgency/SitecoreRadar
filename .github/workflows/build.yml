@@ -26,6 +26,7 @@ jobs:
           node-version: 12.x
       - name: Build project
         run: |
+          ls -al
           npm i
           node .\transform.js
 
