@@ -1,0 +1,6 @@
+name,ring,quadrant,isNew,description
+Blip 1,Trial,Tools-And-Libraries,TRUE,"<p>This is a test.</p>"
+Blip 2,Adopt,Techniques,TRUE,"<p>This is a test.</p>"
+Blip 3,Trial,Modules,TRUE,"<p>This is a test.</p>"
+Blip 4,Hold,Modules,FALSE,"<p>This is a test.</p>"
+Blip 5,Adopt,Product,TRUE,"<p>This is a test.</p><p>Including Markup and ""Escaped Quotes"""
