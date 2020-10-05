@@ -10,7 +10,7 @@ const workDir = "./content"
 function readFiles(directoy, files) {
   content = [];
   for(var i = 0; i < files.length; i++){
-    if (files[i] != "blip.md") {
+    if (files[i] != "_blip.md") {
       console.log("Reading file: " + files[i]);
       content.push(fs.readFileSync(directoy + "/" + files[i], 'utf-8'));
     }
