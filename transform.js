@@ -5,43 +5,38 @@ const del = ",";
 const converter = new pagedown.Converter(); 
 const csvInit = "name,ring,quadrant,isNew,description\n"
 const outFile = "radar.csv"
+const workDir = "./content"
 
-function readFiles(dirname, onFileContent, onError) {
-  fs.readdir(dirname, function(err, filenames) {
-    if (err) {
-      onError(err);
-      return;
+function readFiles(directoy, files) {
+  content = [];
+  for(var i = 0; i < files.length; i++){
+    if (files[i] != "blip.md") {
+      console.log("Reading file: " + files[i]);
+      content.push(fs.readFileSync(directoy + "/" + files[i], 'utf-8'));
     }
-    filenames.forEach(function(filename) {
-      fs.readFile(dirname + filename, 'utf-8', function(err, content) {
-        if (err) {
-          onError(err);
-          return;
-        }
-        onFileContent(filename, content);
-      });
-    });
-  });
+  }
+  return content;
 }
 
-var data = [];
-readFiles('./content/', function(filename, content) {
-    
-    data.push(parser.parseSync(content));
-    
-    let csvString = csvInit;
-    let itemContent = '';
+// get the content of all blips
+blips = readFiles(workDir, fs.readdirSync(workDir));
 
-    data.forEach(function(item) {
-        console.log("Add Entry: " + item.data.name);
-        htmlString = converter.makeHtml(item.content).replace(/(?:\r\n|\r|\n)/g, '');
-        itemContent = '"' + htmlString.replace(/["]/g, "\"\"") + '"';
-        csvString += item.data.name + del + item.data.ring + del + item.data.quadrant + del + item.data.isNew + del + itemContent + "\n";
-    });
+let csvString = csvInit;
 
-    fs.writeFileSync(outFile, csvString);
+for (var i = 0; i < blips.length; i++) {
+  
+  // parse front matter
+  blip = parser.parseSync(blips[i]);
+  
+  console.log("Adding entry: " + blip.data.name);
 
-}, function(err) {
-  throw err;
-});
+  // convert markdown to html and remove newlines
+  htmlString = converter.makeHtml(blip.content).replace(/(?:\r\n|\r|\n)/g, '');
+  blipContent = '"' + htmlString.replace(/["]/g, "\"\"") + '"';
 
+  // add blip to csv string
+  csvString += blip.data.name + del + blip.data.ring + del + blip.data.quadrant + del + blip.data.isNew.toString().toUpperCase() + del + blipContent + "\n";
+}
+
+console.log("write csv...");
+fs.writeFileSync(outFile, csvString);
