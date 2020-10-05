@@ -1,23 +1,17 @@
 name: Build and Publish
 env:
   RADAR_BRANCH: "radar"
+  RADAR_FILENAME: "Sitecore Radar"
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
   push:
     branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Setup Node.js environment
@@ -44,7 +38,7 @@ jobs:
           git config --local user.name "GitHub Action"
           ls -al
           mkdir ./latest
-          cp ../out/radar.csv ./latest/radar.csv
+          cp ../out/radar.csv ./latest/${{env.RADAR_FILENAME}}.csv
 
       - name: Commit Radar
         run: |
