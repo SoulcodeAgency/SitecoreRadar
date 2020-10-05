@@ -1,53 +1,27 @@
-name: CI
+name: Build Radar
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 12.x
-      - name: Build project
+
+      - name: Generate Radar
         run: |
-          ls -al
           npm i
           node transform.js
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: true
-          prerelease: true
-
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./radar.csv
-          asset_name: radar.csv
-          asset_content_type: text/csv
+          mkdir ../out
+          cp radar.csv ../out/radar.csv
+          mkdir ../radar
+          cd ../radar
