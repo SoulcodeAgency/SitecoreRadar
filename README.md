@@ -1,6 +1,6 @@
 # Sitecore Radar
 
-[*Show me the Sitecore Radar!*]()
+[*Show me the Sitecore Radar!*](https://radar.thoughtworks.com/?sheetId=https%3A%2F%2Fsoulcodeagency.github.io%2FSitecoreRadar%2Flatest%2FSitecore%20Radar.csv)
 
 ## About
 
