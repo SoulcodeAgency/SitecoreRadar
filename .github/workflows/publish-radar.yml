@@ -1,7 +1,7 @@
 name: Build and Publish
 env:
   RADAR_BRANCH: "radar"
-  RADAR_FILENAME: "Sitecore Radar"
+  RADAR_FILENAME: "Sitecore Radar.csv"
 
 on:
   push:
@@ -24,21 +24,19 @@ jobs:
           npm i
           node transform.js
           mkdir ../out
-          cp radar.csv ../out/radar.csv
+          mv radar.csv ../out/radar.csv
           mkdir ../radar
           cd ../radar
 
       - uses: actions/checkout@v2
         with:
-          ref: ${{env.RADAR_BRANCH}}
+          ref: ${{ env.RADAR_BRANCH }}
 
       - name: Prepare Radar Artifact
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          ls -al
-          mkdir ./latest
-          cp ../out/radar.csv ./latest/${{env.RADAR_FILENAME}}.csv
+          mv ../out/radar.csv "./latest/${{ env.RADAR_FILENAME }}"
 
       - name: Commit Radar
         run: |
@@ -49,4 +47,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{env.RADAR_BRANCH}}
+          branch: ${{ env.RADAR_BRANCH }}
