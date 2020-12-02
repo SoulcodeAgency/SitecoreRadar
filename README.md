@@ -1,6 +1,6 @@
 # Sitecore Radar
 
-[*Show me the Sitecore Radar!*](https://radar.thoughtworks.com/?sheetId=https%3A%2F%2Fsoulcodeagency.github.io%2FSitecoreRadar%2Flatest%2FSitecore%20Radar.csv)
+:point_right: [**_Show me the Sitecore Radar!_**](https://radar.thoughtworks.com/?sheetId=https%3A%2F%2Fsoulcodeagency.github.io%2FSitecoreRadar%2Flatest%2FSitecore%20Radar.csv) :sparkles:
 
 ## About
 
@@ -43,6 +43,8 @@ This is not a bullet proof recipie and not a must to follow, it just helped me g
 * bad things about the blip
 * reasoning of the classification (ring assignment)
 
-## Contributing
+## How to Contribute
 
-Please do! Pull requests are welcome. If you'd like to add a new blip to the radar, please create an issue first to discuss the addition.
+First and foremost, you can simply [open an issue](https://github.com/SoulcodeAgency/SitecoreRadar/issues/new) and add the full blip content there, no need to mess with forks, clones and PRs.
+That said, if you whish to issue a pull request with your new blip (or changes to an existing blip), you're very welcome to do so. (copy any of the existing blips or the [\_blip.md template](https://github.com/SoulcodeAgency/SitecoreRadar/blob/main/content/_blip.md) to start your contribution)
+Feel free to contact us if you intend to be a regular contributor. We'll happily add you to the project.
