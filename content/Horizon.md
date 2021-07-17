@@ -1,7 +1,7 @@
 ---
 name: Horizon # this is the Title of your Blip
 ring: Assess # Values: [Hold | Assess | Trial | Adopt]
-quadrant: Product # Values: [Tools-And-Libraries | Techniques | Modules | Products] - Make sure to keep these exact values, the Radar is also case sensitive.
+quadrant: Products # Values: [Tools-And-Libraries | Techniques | Modules | Products] - Make sure to keep these exact values, the Radar is also case sensitive.
 isNew: TRUE # Values: [TRUE | FALSE] - Make sure to keep the value all uppercase.
 ---
 [Horizon](https://doc.sitecore.com/users/100/sitecore-experience-platform/en/horizon.html) is the newest editing interface provided by Sitecore and at some point in the future is going to replace the Content Editor and the Experience Editor as the main editor.
