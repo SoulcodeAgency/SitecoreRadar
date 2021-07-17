@@ -27,7 +27,7 @@ function processBlip(blip)
   // parse blip (includes front matter and body)
   parsedBlip = parser.parseSync(blip);
   
-  console.log("Adding entry: " + parsedBlip.data.name);
+  console.log("Processing blip: " + parsedBlip.data.name);
 
   // convert markdown to html and remove newlines
   parsedBlip.content = converter.makeHtml(parsedBlip.content).replace(/(?:\r\n|\r|\n)/g, '');
@@ -63,12 +63,16 @@ for (var i = 0; i < blips.length; i++)
   switch (blip.data.ring) {
     case "Adopt":
       adopt.push(blip);
+      break;
     case "Trial":
       trial.push(blip);
+      break;
     case "Assess":
       assess.push(blip);
+      break;
     case "Hold":
       hold.push(blip);
+      break;
     default:
       break;
   }
