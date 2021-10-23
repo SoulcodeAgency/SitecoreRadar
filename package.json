@@ -4,12 +4,25 @@
   "description": "",
   "main": "transform.js",
   "dependencies": {
+    "@chakra-ui/react": "^1.6.1",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "compose-function": "^3.0.3",
+    "dokz": "^2.0.9",
+    "framer-motion": "^4.1.16",
+    "landing-blocks": "^2.1.0",
+    "next": "^11.1.2",
+    "next-seo": "^4.28.1",
     "pagedown": "^1.1.0",
-    "parser-front-matter": "^1.6.4"
+    "parser-front-matter": "^1.6.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start"
   },
   "author": "Reto Hugi",
   "license": "ISC"
