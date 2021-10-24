@@ -33,7 +33,7 @@ jobs:
         run: |
           node transform.js
           mkdir -p ./out/radar/latest
-          cp radar.csv ./out/radar/latest/${{ env.RADAR_FILENAME }}
+          mv radar.csv ./out/radar/latest/${{ env.RADAR_FILENAME }}
 
       - name: Create radar branch dir
         if: ${{ env.SHOULD_PUBLISH }}
