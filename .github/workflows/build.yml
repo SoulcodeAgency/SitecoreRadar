@@ -1,27 +1,76 @@
-name: Build Radar
+name: Build and Publish Radar
+env:
+  RADAR_BRANCH: "radar"
+  RADAR_FILENAME: "Sitecore Radar.csv"
+  SHOULD_PUBLISH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
 on:
   pull_request:
     branches: [ main ]
-
+  push:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: 12.x
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Build and Export dockz
+        run: |
+          npm run build
 
       - name: Generate Radar
         run: |
-          npm i
           node transform.js
-          mkdir ../out
-          cp radar.csv ../out/radar.csv
-          mkdir ../radar
-          cd ../radar
+          mkdir ./out/radar
+          cp radar.csv ./out/radar/radar.csv
+
+      - name: Create radar branch dir
+        if: ${{ SHOULD_PUBLISH }}
+        run: |
+          mkdir ../radarbranch
+          cd ../radarbranch
+
+      - name: Checkout Radar Branch
+        uses: actions/checkout@v2
+        if: ${{ SHOULD_PUBLISH }}
+        with:
+          ref: ${{ env.RADAR_BRANCH }}
+
+      - name: Prepair Git Config
+        if: ${{ SHOULD_PUBLISH }}
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Move Radar Artifact
+        if: ${{ SHOULD_PUBLISH }}
+        run: |
+          mv ../out/radar/radar.csv "./radar/latest/${{ env.RADAR_FILENAME }}"
+
+      - name: Copy Radar Website
+        if: ${{ SHOULD_PUBLISH }}
+        run: |
+          cp -R ../out/* ./
+
+      - name: Commit Radar
+        if: ${{ SHOULD_PUBLISH }}
+        run: |
+          git add .
+          git commit -m 'Radar Updated by GH Action' -a
+
+      - name: Push Radar
+        if: ${{ SHOULD_PUBLISH }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ env.RADAR_BRANCH }}
