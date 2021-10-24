@@ -41,6 +41,16 @@ jobs:
           mkdir ../radarbranch
           cd ../radarbranch
 
+      - name: Move Radar Artifact
+        if: ${{ env.SHOULD_PUBLISH }}
+        run: |
+          mv ../out/radar/radar.csv "./radar/latest/${{ env.RADAR_FILENAME }}"
+
+      - name: Copy Radar Website
+        if: ${{ env.SHOULD_PUBLISH }}
+        run: |
+          cp -R ../out/* ./
+
       - name: Checkout Radar Branch
         uses: actions/checkout@v2
         if: ${{ env.SHOULD_PUBLISH }}
@@ -52,16 +62,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-
-      - name: Move Radar Artifact
-        if: ${{ env.SHOULD_PUBLISH }}
-        run: |
-          mv ../out/radar/radar.csv "./radar/latest/${{ env.RADAR_FILENAME }}"
-
-      - name: Copy Radar Website
-        if: ${{ env.SHOULD_PUBLISH }}
-        run: |
-          cp -R ../out/* ./
 
       - name: Commit Radar
         if: ${{ env.SHOULD_PUBLISH }}
