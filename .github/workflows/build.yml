@@ -41,13 +41,9 @@ jobs:
         run: |
           ls -al
           mkdir ../radarbranch
+          cp -R ./out/* ../radarbranch/
           cd ../radarbranch
           ls -al
-
-      - name: Copy Radar Artifacts
-        if: ${{ env.SHOULD_PUBLISH }}
-        run: |
-          cp -R ../out/* ./
 
       - name: Checkout Radar Branch
         uses: actions/checkout@v2
