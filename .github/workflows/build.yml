@@ -32,7 +32,7 @@ jobs:
       - name: Generate Radar
         run: |
           node transform.js
-          mkdir ./out/radar
+          mkdir -p ./out/radar/latest
           cp radar.csv ./out/radar/latest/${{ env.RADAR_FILENAME }}
 
       - name: Create radar branch dir
