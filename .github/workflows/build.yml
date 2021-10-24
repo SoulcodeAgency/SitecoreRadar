@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: 14.x
+          node-version: 14.17.6
 
       - name: Install dependencies
         run: |
@@ -36,40 +36,41 @@ jobs:
           cp radar.csv ./out/radar/radar.csv
 
       - name: Create radar branch dir
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
         run: |
           mkdir ../radarbranch
           cd ../radarbranch
 
       - name: Checkout Radar Branch
         uses: actions/checkout@v2
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
         with:
           ref: ${{ env.RADAR_BRANCH }}
 
       - name: Prepair Git Config
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
       - name: Move Radar Artifact
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
         run: |
           mv ../out/radar/radar.csv "./radar/latest/${{ env.RADAR_FILENAME }}"
 
       - name: Copy Radar Website
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
         run: |
           cp -R ../out/* ./
 
       - name: Commit Radar
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
         run: |
           git add .
           git commit -m 'Radar Updated by GH Action' -a
 
       - name: Push Radar
-        if: ${{ SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
