@@ -60,6 +60,7 @@ jobs:
       - name: Commit Radar
         if: ${{ env.SHOULD_PUBLISH }}
         run: |
+          cp -R ../radarbranch/* ./
           git add .
           git commit -m 'Radar Updated by GH Action' -a
 
