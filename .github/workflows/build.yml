@@ -33,20 +33,17 @@ jobs:
         run: |
           node transform.js
           mkdir ./out/radar
-          cp radar.csv ./out/radar/radar.csv
+          cp radar.csv ./out/radar/latest/${{ env.RADAR_FILENAME }}
 
       - name: Create radar branch dir
         if: ${{ env.SHOULD_PUBLISH }}
         run: |
+          ls -al
           mkdir ../radarbranch
           cd ../radarbranch
+          ls -al
 
-      - name: Move Radar Artifact
-        if: ${{ env.SHOULD_PUBLISH }}
-        run: |
-          mv ../out/radar/radar.csv "./radar/latest/${{ env.RADAR_FILENAME }}"
-
-      - name: Copy Radar Website
+      - name: Copy Radar Artifacts
         if: ${{ env.SHOULD_PUBLISH }}
         run: |
           cp -R ../out/* ./
