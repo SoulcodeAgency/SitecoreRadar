@@ -8,11 +8,10 @@ import { useRouter } from 'next/router'
 
 const order = {
     'index.mdx': true,
-    'second-item': true,
-    //ADM: true,
-    more: {
-        index: true,
-    }
+    'blog': false,
+    // more: {
+    //     index: true,
+    // }
 }
 
 export default function App(props) {
