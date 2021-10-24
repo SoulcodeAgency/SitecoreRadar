@@ -5,7 +5,7 @@ const del = ",";
 const converter = new pagedown.Converter(); 
 const csvInit = "name,ring,quadrant,isNew,description\n"
 const outFile = "radar.csv"
-const workDir = "./content"
+const workDir = "./radar"
 
 function readFiles(directoy, files)
 {
