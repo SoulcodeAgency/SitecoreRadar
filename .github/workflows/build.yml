@@ -1,14 +1,17 @@
 name: Build and Publish Radar
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+  push:
+    branches: 
+      - 'main'
+
 env:
   RADAR_BRANCH: "radar"
   RADAR_FILENAME: "Sitecore Radar.csv"
   SHOULD_PUBLISH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-
-on:
-  pull_request:
-    branches: [ main ]
-  push:
-    branches: [ main ]
 
 jobs:
   build:
@@ -37,7 +40,7 @@ jobs:
           mv radar.csv "./out/radar/latest/${{ env.RADAR_FILENAME }}"
 
       - name: Create radar branch dir
-        if: ${{ env.SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH == 'true' }}
         run: |
           ls -al
           mkdir ../radarbranch
@@ -47,25 +50,25 @@ jobs:
 
       - name: Checkout Radar Branch
         uses: actions/checkout@v2
-        if: ${{ env.SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH == 'true' }}
         with:
           ref: ${{ env.RADAR_BRANCH }}
 
       - name: Prepair Git Config
-        if: ${{ env.SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH == 'true' }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
       - name: Commit Radar
-        if: ${{ env.SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH == 'true' }}
         run: |
           cp -R ../radarbranch/* ./
           git add .
           git commit -m 'Radar Updated by GH Action' -a
 
       - name: Push Radar
-        if: ${{ env.SHOULD_PUBLISH }}
+        if: ${{ env.SHOULD_PUBLISH == 'true' }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
