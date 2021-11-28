@@ -6,6 +6,8 @@ on:
       - 'redirects'
     paths:
       - 'src/az-static-webapp/**'
+      - '.github/workflows/deploy-sitecoreradarredirects.yml'
+
 
 jobs:
   build:
