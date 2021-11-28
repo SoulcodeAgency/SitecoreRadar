@@ -19,4 +19,4 @@ jobs:
         azure_static_web_apps_api_token: ${{ secrets.AZ_SITECORERADARREDIRECTS_DEPLOY_TOKEN }}
         #repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
         action: "upload"
-        app_location: "src\az-static-webapp" # App source code path relative to repository root
+        app_location: "src/az-static-webapp" # App source code path relative to repository root
