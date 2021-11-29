@@ -3,7 +3,7 @@
       {
         "route": "/*",
         "redirect": "https://www.sitecore-radar.com",
-        "statusCode": 302
+        "statusCode": 301
       }
     ]
   }
