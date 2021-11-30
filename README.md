@@ -1,8 +1,6 @@
 # Sitecore Radar
 
-:point_right: [**Visit the Website!**](https://www.sitecore-radar.com) :boom:
-
-:point_right: [**Show me the Sitecore Radar!**](https://radar.thoughtworks.com/?sheetId=https%3A%2F%2Fwww.sitecore-radar.com%2Fradar%2Flatest%2FSitecore%20Radar.csv) :sparkles:
+:point_right: [**Visit the Sitecore Radar!**](https://www.sitecore-radar.com) :sparkles:
 
 ## About
 

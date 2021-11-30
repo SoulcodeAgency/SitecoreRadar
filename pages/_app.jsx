@@ -8,6 +8,8 @@ import { useRouter } from 'next/router'
 
 const order = {
     'index.mdx': true,
+    'introduction.mdx': true,
+    'legal.mdx': true,
     'blog': false,
     // more: {
     //     index: true,
