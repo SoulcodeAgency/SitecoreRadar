@@ -30,7 +30,7 @@ export default function App(props) {
                     blogRootPath='pages/blog'
                     headerLogo={<NextLink href='/'><a><img src='/sitecore-radar-48.png' width='48px' alt='Sitecore Radar Logo'/></a></NextLink>}
                     animate
-                    headTitlePrefix='Dokz Blog - '
+                    headTitlePrefix='Radar Blog - '
                     githubUrl='SoulcodeAgency/SitecoreRadar'
                     branch='main'
                     headerItems={[
