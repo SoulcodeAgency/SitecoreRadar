@@ -1,3 +1,7 @@
+**Thanks for visiting, this project is closed and will not receive any updates. However, don't hesitate to contact us, if you have feedback or questions around Sitecore products.**
+
+---
+
 # Sitecore Radar
 
 :point_right: [**Visit the Sitecore Radar!**](https://www.sitecore-radar.com) :sparkles:
